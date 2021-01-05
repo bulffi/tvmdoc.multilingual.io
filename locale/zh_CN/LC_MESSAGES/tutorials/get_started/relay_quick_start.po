@@ -22,42 +22,48 @@ msgid ""
 "Click :ref:`here "
 "<sphx_glr_download_tutorials_get_started_relay_quick_start.py>` to "
 "download the full example code"
-msgstr ""
+msgstr "点击 :ref:`这里 "
+"<sphx_glr_download_tutorials_get_started_relay_quick_start.py>` "
+"下载所有的示例代码"
 
 #: ../../tutorials/get_started/relay_quick_start.rst:24
 msgid "Quick Start Tutorial for Compiling Deep Learning Models"
-msgstr ""
+msgstr "入门：使用 TVM 编译深度学习模型"
 
 #: ../../tutorials/get_started/relay_quick_start.rst:25
 msgid ""
 "**Author**: `Yao Wang <https://github.com/kevinthesun>`_, `Truman Tian "
 "<https://github.com/SiNZeRo>`_"
-msgstr ""
+msgstr "**作者**：`Yao Wang <https://github.com/kevinthesun>`_, `Truman Tian "
+"<https://github.com/SiNZeRo>`_"
 
 #: ../../tutorials/get_started/relay_quick_start.rst:27
 msgid ""
 "This example shows how to build a neural network with Relay python "
 "frontend and generates a runtime library for Nvidia GPU with TVM. Notice "
 "that you need to build TVM with cuda and llvm enabled."
-msgstr ""
+msgstr "在这里我们将向您展示如何使用 Relay Python 前端来定义一个模型，"
+"并使用 TVM 来生成一个针对英伟达 GPU 的运行时库。"
+"注意：您必须使用支持了 llvm 和 cuda 的 TVM 才能运行此程序。"
 
 #: ../../tutorials/get_started/relay_quick_start.rst:34
 msgid "Overview for Supported Hardware Backend of TVM"
-msgstr ""
+msgstr "概览：TVM 支持的硬件后端"
 
 #: ../../tutorials/get_started/relay_quick_start.rst:35
 msgid "The image below shows hardware backend currently supported by TVM:"
-msgstr ""
+msgstr "下图展示了现在 TVM 支持的硬件后端。"
 
 #: ../../tutorials/get_started/relay_quick_start.rst:40
 msgid ""
 "In this tutorial, we'll choose cuda and llvm as target backends. To begin"
 " with, let's import Relay and TVM."
-msgstr ""
+msgstr "在本例中，我们将会使用 cuda 和 llvm 来作为后端。"
+"首先，我们 import Relay 和 TVM"
 
 #: ../../tutorials/get_started/relay_quick_start.rst:66
 msgid "Define Neural Network in Relay"
-msgstr ""
+msgstr "使用 Relay 定义神经网络"
 
 #: ../../tutorials/get_started/relay_quick_start.rst:67
 msgid ""
@@ -65,7 +71,9 @@ msgid ""
 "simplicity, we'll use pre-defined resnet-18 network in Relay. Parameters "
 "are initialized with Xavier initializer. Relay also supports other model "
 "formats such as MXNet, CoreML, ONNX and Tensorflow."
-msgstr ""
+msgstr "首先，我们使用 Relay 的 Python 前端来定义一个神经网络。简单起见，我们使用一个"
+"预定义好的 resnet-18。参数使用 Xavier initializer 进行初始化。Relay 也支持其他模型格式，例如："
+"MXNet, CoreML, ONNX 和 Tensorflow。"
 
 #: ../../tutorials/get_started/relay_quick_start.rst:73
 msgid ""
@@ -73,15 +81,17 @@ msgid ""
 "batch size is set to be 1. Input images are RGB color images of size 224 "
 "* 224. We can call the :any:`tvm.relay.TupleWrapper.astext()` to show the"
 " network structure."
-msgstr ""
+msgstr "在本例中，我们将假设我们只在设备上作推理（inference），同时把 batch size 设置成 1。输入"
+"输入图片是 224*224 的 RGB 图片。我们调用 :any:`tvm.relay.TupleWrapper.astext()` 来展示这个"
+"神经网络的结构。"
 
 #: ../../tutorials/get_started/relay_quick_start.rst:102
 msgid "Out:"
-msgstr ""
+msgstr "输出："
 
 #: ../../tutorials/get_started/relay_quick_start.rst:208
 msgid "Compilation"
-msgstr ""
+msgstr "编译："
 
 #: ../../tutorials/get_started/relay_quick_start.rst:209
 msgid ""
@@ -89,7 +99,9 @@ msgid ""
 " specify the optimization level of the compilation. Currently this value "
 "can be 0 to 3. The optimization passes include operator fusion, pre-"
 "computation, layout transformation and so on."
-msgstr ""
+msgstr "下一步是使用 Relay/TVM 流水线来编译模型。用户可以给出编译的优化级别。"
+"当前我们支持 0 到 3 的优化级别。优化 pass 包括 operator fusion，pre-"
+"computation，layout transformation 以及其他。"
 
 #: ../../tutorials/get_started/relay_quick_start.rst:214
 msgid ""
@@ -100,6 +112,9 @@ msgid ""
 "while TVM does the tensor-level optimization, resulting in an optimized "
 "runtime module for model serving."
 msgstr ""
+":py:func:`relay.build` 有三个返回值，分别是 json 格式的 execution graph，"
+"graph 中的各个已经针对特定硬件进行优化了的函数以及模型的参数块。在编译过程中，Relay 会进行"
+"图级的优化，TVM 将会进行 Tensor 级别的优化，从而生成出一个优化的 runtime module 用于 model serving。"
 
 #: ../../tutorials/get_started/relay_quick_start.rst:221
 msgid ""
@@ -111,37 +126,41 @@ msgid ""
 " high level IR into the lower intrinsic IR of the specified target "
 "backend, which is CUDA in this example. Then the machine code will be "
 "generated as the module library."
-msgstr ""
-
+msgstr "我们首先针对英伟达的 GPU 进行编译。:py:func:`relay.build` 将首先进行图层面的优化"
+"，例如 pruning，fusing 以及其他。之后将会把相应的 operator（也就是图中的节点）注册到 TVM 中从而"
+"得到一个 `tvm.module`。为获取该 module，TVM 首先将高抽象层的 IR 转化为针对特定后端的低抽象的 IR"
+"，也就是 CUDA，而后生成出最终的机器码。"
 #: ../../tutorials/get_started/relay_quick_start.rst:277
 msgid "Run the generate library"
-msgstr ""
+msgstr "运行生成的 library"
 
 #: ../../tutorials/get_started/relay_quick_start.rst:278
 msgid "Now we can create graph runtime and run the module on Nvidia GPU."
-msgstr ""
+msgstr "现在我们创建图运行时并在英伟达 GPU 上运行该 module"
 
 #: ../../tutorials/get_started/relay_quick_start.rst:304
 msgid "Save and Load Compiled Module"
-msgstr ""
+msgstr "保存并在之后加载 Module"
 
 #: ../../tutorials/get_started/relay_quick_start.rst:305
 msgid ""
 "We can also save the graph, lib and parameters into files and load them "
 "back in deploy environment."
-msgstr ""
+msgstr "我们也将图、库以及参数保存到文件中并在之后的部署环境中加载它们。"
 
 #: ../../tutorials/get_started/relay_quick_start.rst:354
 msgid ""
 ":download:`Download Python source code: relay_quick_start.py "
 "<relay_quick_start.py>`"
-msgstr ""
+msgstr ":download:`下载 Python 源代码: relay_quick_start.py "
+"<relay_quick_start.py>`"
 
 #: ../../tutorials/get_started/relay_quick_start.rst:360
 msgid ""
 ":download:`Download Jupyter notebook: relay_quick_start.ipynb "
 "<relay_quick_start.ipynb>`"
-msgstr ""
+msgstr ":download:`下载 Jupyter notebook: relay_quick_start.ipynb "
+"<relay_quick_start.ipynb>`"
 
 #: ../../tutorials/get_started/relay_quick_start.rst:367
 msgid "`Gallery generated by Sphinx-Gallery <https://sphinx-gallery.github.io>`_"
